@@ -11,13 +11,33 @@ namespace Challenge.Challenges
     {
         public override void Execute()
         {
-            GetInput().ForEach(i => Console.Write($" {i}"));
-            Console.WriteLine();
-            Console.ReadLine();
+            GetInput().ForEach(i =>
+            {
+                Console.WriteLine("Input: ");
+                i.ForEach(j => Console.Write($"{j} "));
+                Console.WriteLine();
+
+                SolveInput(i);
+                Console.WriteLine();
+            });
         }
 
-        private List<int> GetInput() => input.Split(' ').Select(i => int.Parse(i)).ToList();
+        private static void SolveInput(List<int> input)
+        {
+            
+        }
 
-        private string input = "9 -6 -5 9 8 3 -4 8 1 7 -4 9 -9 1 9 -9 9 4 -6 -8";
+        private static List<List<int>> GetInput()
+        {
+            var lines = new List<List<int>>();
+            Input.ForEach(l => lines.Add(l.Split(' ').Select(int.Parse).ToList()));
+            return lines;
+        }
+
+        private static readonly List<string> Input = new List<string> { 
+            "4 5 -1 -2 -7 2 -5 -3 -7 -3 1",
+            "-1 -6 -3 -7 5 -8 2 -8 1",
+            "-5 -1 -4 2 9 -9 -6 -1 -7"
+        };
     }
 }
