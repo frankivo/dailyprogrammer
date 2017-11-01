@@ -44,9 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Challenge.cs" />
-    <Compile Include="Challenge333.cs" />
-    <Compile Include="Challenge321.cs" />
-    <Compile Include="Challenge338.cs" />
+    <Compile Include="Challenges\Challenge333.cs" />
+    <Compile Include="Challenges\Challenge321.cs" />
+    <Compile Include="Challenges\Challenge338.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

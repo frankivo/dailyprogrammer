@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Linq;
-using static System.Math;
 
-namespace Challenge
+namespace Challenge.Challenges
 {
     internal class Challenge338 : Challenge
     {
@@ -26,9 +25,9 @@ namespace Challenge
                 var iso = ZellarToIso();
                 Console.WriteLine($"{(Constants.Days)iso}");
 
-                int Zellar() => (int)(date.Day + Floor(13 * (date.Month + 1) / 5) + date.Year +
-                                      Floor(date.Year / 4) - Floor(date.Year / 100) +
-                                      Floor(date.Year / 400)) % 7;
+                int Zellar() => (int)(date.Day + Math.Floor(13 * (date.Month + 1) / 5) + date.Year +
+                                      Math.Floor(date.Year / 4) - Math.Floor(date.Year / 100) +
+                                      Math.Floor(date.Year / 400)) % 7;
                 int ZellarToIso() => ((zellar + 5) % 7) + 1;
             }
         }

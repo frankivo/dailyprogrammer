@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Challenge
+namespace Challenge.Challenges
 {
     internal class Challenge333 : Challenge
     {
