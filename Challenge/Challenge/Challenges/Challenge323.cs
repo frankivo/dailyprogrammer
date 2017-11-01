@@ -13,11 +13,10 @@ namespace Challenge.Challenges
         {
             GetInput().ForEach(i => Console.Write($" {i}"));
             Console.WriteLine();
-            Console.ReadLine();
         }
 
-        private List<int> GetInput() => input.Split(' ').Select(i => int.Parse(i)).ToList();
+        private static List<int> GetInput() => Input.Split(' ').Select(int.Parse).ToList();
 
-        private string input = "9 -6 -5 9 8 3 -4 8 1 7 -4 9 -9 1 9 -9 9 4 -6 -8";
+        private const string Input = "4 5 -1 -2 -7 2 -5 -3 -7 -3 1 -1 -6 -3 -7 5 -8 2 -8 1 -5 -1 -4 2 9 -9 -6 -1 -7";
     }
 }
