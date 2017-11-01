@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace Challenge.Challenges
 {
+    /// <summary>
+    /// https://www.reddit.com/r/dailyprogrammer/comments/6jr76h/20170627_challenge_321_easy_talking_clock/
+    /// </summary>
     internal class Challenge321 : Challenge
     {
         private readonly List<string> _inputs = new List<string> {"00:00", "01:30", "12:05", "14:01", "20:29", "21:00"};

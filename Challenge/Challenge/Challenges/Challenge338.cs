@@ -3,6 +3,9 @@ using System.Linq;
 
 namespace Challenge.Challenges
 {
+    /// <summary>
+    /// https://www.reddit.com/r/dailyprogrammer/comments/79npf9/20171030_challenge_338_easy_what_day_was_it_again/
+    /// </summary>
     internal class Challenge338 : Challenge
     {
         private const string Inputs = "2017 10 30\r\n2016 2 29\r\n2015 2 28\r\n29 4 12\r\n570 11 30\r\n1066 9 25\r\n1776 7 4\r\n1933 1 30\r\n1953 3 6\r\n2100 1 9\r\n2202 12 15\r\n7032 3 26";
