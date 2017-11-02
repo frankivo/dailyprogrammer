@@ -26,7 +26,7 @@ namespace Challenge.Challenges
             });
         }
 
-        private static ResultType SolveInput(List<int> input)
+        private static ResultType SolveInput(IReadOnlyList<int> input)
         {
             var rs = new ResultType();
 
