@@ -26,7 +26,7 @@ namespace Challenge.Challenges
             });
         }
 
-        private ResultType SolveInput(List<int> input)
+        private static ResultType SolveInput(List<int> input)
         {
             var rs = new ResultType();
 
@@ -53,7 +53,7 @@ namespace Challenge.Challenges
             return rs;
         }
 
-        private void PrintResult(ResultType res)
+        private static void PrintResult(ResultType res)
         {
             Console.WriteLine("Output: ");
             foreach (var r in res.OrderBy(i => i.Item1).ThenBy(i => i.Item2).ThenBy(i => i.Item3))
@@ -62,7 +62,7 @@ namespace Challenge.Challenges
             }
         }
 
-        private (int, int, int) Sort(params int[] items)
+        private static (int, int, int) Sort(params int[] items)
         {
             var sorted = items.OrderBy(i => i).ToList();
             return (sorted[0], sorted[1], sorted[2]);
