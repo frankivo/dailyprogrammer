@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Challenge
+namespace Challenge.Challenges
 {
+    /// <summary>
+    /// https://www.reddit.com/r/dailyprogrammer/comments/72ivih/20170926_challenge_333_easy_packet_assembler/
+    /// </summary>
     internal class Challenge333 : Challenge
     {
         public override void Execute()

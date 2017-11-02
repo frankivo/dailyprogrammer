@@ -36,9 +36,10 @@ namespace Challenge
                 {
                     end = true;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    Console.WriteLine("Error during execution");
+                    Console.WriteLine("Error during execution: ");
+                    Console.WriteLine(ex.Message);
                 }
 
                 if (!end) Console.ReadLine();
