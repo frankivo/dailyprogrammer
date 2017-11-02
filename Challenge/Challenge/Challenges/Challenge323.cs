@@ -43,7 +43,6 @@ namespace Challenge.Challenges
                         var third = input[c];
 
                         if (first + second + third != 0) continue;
-
                         rs.Add(Sort(first, second, third));
                     }
                 }
@@ -61,11 +60,10 @@ namespace Challenge.Challenges
             Console.WriteLine();
         }
 
-        private static (int, int, int) Sort(int a, int b, int c)
+        private (int, int, int) Sort(params int[] items)
         {
-            var t = new List<int> {a, b, c};
-            t.Sort();
-            return (t[0], t[1], t[2]);
+            var sorted = items.OrderBy(i => i).ToArray();
+            return (sorted[0], sorted[1], sorted[2]);
         }
 
 
