@@ -17,15 +17,57 @@ namespace Challenge.Challenges
                 i.ForEach(j => Console.Write($"{j} "));
                 Console.WriteLine();
 
-                SolveInput(i);
+                var res = SolveInput(i);
+                PrintResult(res);
+
                 Console.WriteLine();
             });
         }
 
-        private static void SolveInput(List<int> input)
+        private HashSet<(int, int, int)> SolveInput(List<int> input)
         {
-            
+            var rs = new HashSet<(int, int, int)>();
+
+            for (var a = 0; a < input.Count; a++)
+            {
+                var first = input[a];
+
+                for (var b = 0; b < input.Count; b++)
+                {
+                    if (b == a) continue;
+                    var second = input[b];
+
+                    for (var c = 0; c < input.Count; c++)
+                    {
+                        if (c == a || c == b) continue;
+                        var third = input[c];
+
+                        if (first + second + third != 0) continue;
+
+                        rs.Add(Sort(first, second, third));
+                    }
+                }
+            }
+
+            return rs;
         }
+
+        private void PrintResult(HashSet<(int, int, int)> res)
+        {
+            foreach (var r in res.OrderBy(i => i.Item1).ThenBy(i => i.Item2).ThenBy(i => i.Item3))
+            {
+                Console.WriteLine($"SOL {r.Item1} {r.Item2} {r.Item3}");
+            }
+            Console.WriteLine();
+        }
+
+        private static (int, int, int) Sort(int a, int b, int c)
+        {
+            var t = new List<int> {a, b, c};
+            t.Sort();
+            return (t[0], t[1], t[2]);
+        }
+
 
         private static List<List<int>> GetInput()
         {
