@@ -9,6 +9,8 @@ namespace Challenge.Challenges
     /// </summary>
     internal class Challenge323 : Challenge
     {
+        private class ResultType : HashSet<(int, int, int)> {}
+
         public override void Execute()
         {
             GetInput().ForEach(i =>
@@ -24,9 +26,9 @@ namespace Challenge.Challenges
             });
         }
 
-        private HashSet<(int, int, int)> SolveInput(List<int> input)
+        private ResultType SolveInput(List<int> input)
         {
-            var rs = new HashSet<(int, int, int)>();
+            var rs = new ResultType();
 
             for (var a = 0; a < input.Count; a++)
             {
@@ -51,21 +53,20 @@ namespace Challenge.Challenges
             return rs;
         }
 
-        private void PrintResult(HashSet<(int, int, int)> res)
+        private void PrintResult(ResultType res)
         {
+            Console.WriteLine("Output: ");
             foreach (var r in res.OrderBy(i => i.Item1).ThenBy(i => i.Item2).ThenBy(i => i.Item3))
             {
                 Console.WriteLine($"SOL {r.Item1} {r.Item2} {r.Item3}");
             }
-            Console.WriteLine();
         }
 
         private (int, int, int) Sort(params int[] items)
         {
-            var sorted = items.OrderBy(i => i).ToArray();
+            var sorted = items.OrderBy(i => i).ToList();
             return (sorted[0], sorted[1], sorted[2]);
         }
-
 
         private static List<List<int>> GetInput()
         {
@@ -74,7 +75,8 @@ namespace Challenge.Challenges
             return lines;
         }
 
-        private static readonly List<string> Input = new List<string> {
+        private static readonly List<string> Input = new List<string>
+        {
             "9 -6 -5 9 8 3 -4 8 1 7 -4 9 -9 1 9 -9 9 4 -6 -8",
             "4 5 -1 -2 -7 2 -5 -3 -7 -3 1",
             "-1 -6 -3 -7 5 -8 2 -8 1",
