@@ -1,5 +1,5 @@
-﻿using System;
-using LanguageExt;
+﻿using LanguageExt;
+using System;
 
 namespace Challenge.Challenges.Chal339
 {
@@ -11,8 +11,6 @@ namespace Challenge.Challenges.Chal339
 
         public Employee(string raw)
         {
-            var index = 0;
-
             Name = raw.Substring(0, 19).Trim();
             Age = int.Parse(raw.Substring(20, 2));
 
