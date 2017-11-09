@@ -7,15 +7,22 @@ namespace Challenge.Challenges.Chal339
         private const string SearchCol = "::EXT::COL";
         private const string SearchJob = "::EXT::JOB";
         private const string SearchSal = "::EXT::SAL";
+        private const int NameLength = 20;
+        private const int AgeLength = 2;
+        private const int YearLength = 2;
+        private const int MonthLength = 2;
+        private const int DayLength = 2;
 
         public Employee(string raw)
         {
-            Name = raw.Substring(0, 19).Trim();
-            Age = int.Parse(raw.Substring(20, 2));
+            var index = 0;
 
-            var year = int.Parse(raw.Substring(22, 2));
-            var month = int.Parse(raw.Substring(24, 2));
-            var day = int.Parse(raw.Substring(26, 2));
+            Name = raw.Substring(index, NameLength).Trim();
+            Age = int.Parse(raw.Substring(index += NameLength, AgeLength));
+
+            var year = int.Parse(raw.Substring(index += AgeLength, YearLength));
+            var month = int.Parse(raw.Substring(index += YearLength, MonthLength));
+            var day = int.Parse(raw.Substring(index + MonthLength, DayLength));
             BirthDate = new DateTime(year, month, day);
         }
 
