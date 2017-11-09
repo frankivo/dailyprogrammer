@@ -1,5 +1,4 @@
 ﻿using Challenge.Challenges.Chal339;
-using LanguageExt.UnsafeValueAccess;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -25,24 +24,13 @@ namespace Challenge.Challenges
 
             ProcessInput();
 
-            _employees.ForEach(WriteEmployee);
-
             var emp = GetHighestSallery();
-            var sal = emp.Sallery.ValueUnsafe().ToString("N0", new CultureInfo("en-US"));
+            var sal = emp.Sallery.ToString("N0", new CultureInfo("en-US"));
 
             Console.WriteLine($"{emp.Name}, ${sal}");
         }
 
-        private Employee GetHighestSallery() => _employees.Where(e => e.Sallery.IsSome).OrderBy(e => e.Sallery).Last();
-
-        private static void WriteEmployee(Employee emp)
-        {
-            Console.WriteLine($"Employee: {emp.Name}");
-            emp.Col.IfSome(col => Console.WriteLine($"Col: {col}"));
-            emp.Job.IfSome(job => Console.WriteLine($"Job: {job}"));
-            emp.Sallery.IfSome(sal => Console.WriteLine($"Sallery: {sal}"));
-            Console.WriteLine();
-        }
+        private Employee GetHighestSallery() => _employees.OrderBy(e => e.Sallery).Last();
 
         private void ProcessInput()
         {

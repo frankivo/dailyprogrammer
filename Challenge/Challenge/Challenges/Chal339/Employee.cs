@@ -1,5 +1,4 @@
-﻿using LanguageExt;
-using System;
+﻿using System;
 
 namespace Challenge.Challenges.Chal339
 {
@@ -38,10 +37,10 @@ namespace Challenge.Challenges.Chal339
 
         public DateTime BirthDate { get; }
 
-        public Option<string> Col { get; private set; }
+        public string Col { get; private set; }
 
-        public Option<string> Job { get; private set; }
+        public string Job { get; private set; }
 
-        public Option<int> Sallery { get; private set; }
+        public int Sallery { get; private set; }
     }
 }
