@@ -1,9 +1,14 @@
 ﻿using System;
+using LanguageExt;
 
 namespace Challenge.Challenges.Chal339
 {
     internal class Employee
     {
+        private const string SearchCol = "::EXT::COL";
+        private const string SearchJob = "::EXT::JOB";
+        private const string SearchSal = "::EXT::SAL";
+
         public Employee(string raw)
         {
             var index = 0;
@@ -17,10 +22,28 @@ namespace Challenge.Challenges.Chal339
             BirthDate = new DateTime(year, month, day);
         }
 
+        public void AddExtension(string raw)
+        {
+            if (raw.StartsWith(SearchCol))
+                Col = raw.Substring(SearchCol.Length).Trim();
+            else if (raw.StartsWith(SearchJob))
+                Job = raw.Substring(SearchJob.Length).Trim();
+            else if (raw.StartsWith(SearchSal))
+                Sallery = int.Parse(raw.Substring(SearchSal.Length).Trim());
+            else
+                throw new ArgumentException(nameof(raw));
+        }
+
         public string Name { get; }
 
         public int Age { get; }
 
         public DateTime BirthDate { get; }
+
+        public Option<string> Col { get; private set; }
+
+        public Option<string> Job { get; private set; }
+
+        public Option<int> Sallery { get; private set; }
     }
 }

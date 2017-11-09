@@ -24,16 +24,24 @@ namespace Challenge.Challenges
 
             ProcessInput();
 
-            Console.WriteLine($"Employees: {_employees.Count}");
+            foreach (var employee in _employees)
+            {
+                Console.WriteLine($"Employee: {employee.Name}");
+                employee.Col.IfSome(col => Console.WriteLine($"Col: {col}"));
+                employee.Job.IfSome(job => Console.WriteLine($"Job: {job}"));
+                employee.Sallery.IfSome(sal => Console.WriteLine($"Sallery: {sal}"));
+                Console.WriteLine();
+            }
         }
 
         private void ProcessInput()
         {
             foreach (var line in _input)
             {
-                if (line.StartsWith("::EXT::"))
-                    continue;
-                _employees.Add(new Employee(line));
+                if (!line.StartsWith("::EXT::"))
+                    _employees.Add(new Employee(line));
+                else
+                    _employees.Last().AddExtension(line);
             }
         }
 
@@ -43,6 +51,6 @@ namespace Challenge.Challenges
         }
 
         private readonly List<string> _input;
-        private List<Employee> _employees;
+        private readonly List<Employee> _employees;
     }
 }
