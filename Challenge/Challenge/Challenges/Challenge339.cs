@@ -5,6 +5,9 @@ using System.Linq;
 
 namespace Challenge.Challenges
 {
+    /// <summary>
+    /// https://www.reddit.com/r/dailyprogrammer/comments/7b5u96/20171106_challenge_339_easy_fixedlength_file/
+    /// </summary>
     internal class Challenge339 : Challenge
     {
         public Challenge339() => _input = ReadFile("Resources/Challenge339.txt");
