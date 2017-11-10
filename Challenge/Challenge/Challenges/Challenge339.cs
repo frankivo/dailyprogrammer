@@ -25,12 +25,12 @@ namespace Challenge.Challenges
             ProcessInput();
 
             var emp = GetHighestSallery();
-            var sal = emp.Sallery.ToString("N0", new CultureInfo("en-US"));
+            var sal = int.Parse(emp.GetExtension("SAL")).ToString("N0", new CultureInfo("en-US"));
 
             Console.WriteLine($"{emp.Name}, ${sal}");
         }
 
-        private Employee GetHighestSallery() => _employees.OrderBy(e => e.Sallery).Last();
+        private Employee GetHighestSallery() => _employees.Where(e => e.HasExtension("SAL")).OrderBy(e => int.Parse(e.GetExtension("SAL"))).Last();
 
         private void ProcessInput()
         {
