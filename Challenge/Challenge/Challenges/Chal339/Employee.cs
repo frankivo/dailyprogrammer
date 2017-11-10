@@ -1,17 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Challenge.Challenges.Chal339
 {
     internal class Employee
     {
-        private const string SearchCol = "::EXT::COL";
-        private const string SearchJob = "::EXT::JOB";
-        private const string SearchSal = "::EXT::SAL";
         private const int NameLength = 20;
         private const int AgeLength = 2;
         private const int YearLength = 2;
         private const int MonthLength = 2;
         private const int DayLength = 2;
+        private readonly Dictionary<string, string> _extensions;
 
         public Employee(string raw)
         {
@@ -24,18 +23,15 @@ namespace Challenge.Challenges.Chal339
             var month = int.Parse(raw.Substring(index += YearLength, MonthLength));
             var day = int.Parse(raw.Substring(index + MonthLength, DayLength));
             BirthDate = new DateTime(year, month, day);
+
+            _extensions = new Dictionary<string, string>();
         }
 
         public void AddExtension(string raw)
         {
-            if (raw.StartsWith(SearchCol))
-                Col = raw.Substring(SearchCol.Length).Trim();
-            else if (raw.StartsWith(SearchJob))
-                Job = raw.Substring(SearchJob.Length).Trim();
-            else if (raw.StartsWith(SearchSal))
-                Sallery = int.Parse(raw.Substring(SearchSal.Length).Trim());
-            else
-                throw new ArgumentException(nameof(raw));
+            var key = raw.Substring(7, 3);
+            var value = raw.Substring(11);
+            _extensions.Add(key, value);
         }
 
         public string Name { get; }
@@ -44,10 +40,8 @@ namespace Challenge.Challenges.Chal339
 
         public DateTime BirthDate { get; }
 
-        public string Col { get; private set; }
+        public bool HasExtension(string key) => _extensions.ContainsKey(key);
 
-        public string Job { get; private set; }
-
-        public int Sallery { get; private set; }
+        public string GetExtension(string key) => _extensions[key];
     }
 }
