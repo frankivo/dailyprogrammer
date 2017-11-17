@@ -9,33 +9,27 @@ namespace Challenge.Challenges
     /// </summary>
     internal class Challenge277 : Challenge
     {
-        public override void Execute()
-        {
-            foreach (var i in GetInput())
-            {
-                Solve(i.nummerator, i.denominator);
-            }
-        }
+        public override void Execute() => GetInput().ToList().ForEach(Solve);
 
-        private static void Solve(int nummerator, int denominator)
+        private static void Solve(ValueTuple<int, int> input) // Meh, no names here
         {
-            for (var i = nummerator; i > 1 ; i--)
-            {
-                if (IsFraction(nummerator, i) || IsFraction(denominator, i)) continue;
+            var num = input.Item1;
+            var den = input.Item2;
 
-                Console.WriteLine($"{nummerator} {denominator} = {nummerator / i} {denominator / i}");
+            for (var i = num; i > 1; i--)
+            {
+                if (IsFraction(num, i) || IsFraction(den, i)) continue;
+                Console.WriteLine($"{num} {den} = {num / i} {den / i}");
                 break;
             }
         }
 
         private static bool IsFraction(int a, int b) => a % b != 0;
 
-        private static IEnumerable<(int nummerator, int denominator)> GetInput()
-        {
-            const string input = "4 8\r\n1536 78360\r\n51478 5536\r\n46410 119340\r\n7673 4729\r\n4096 1024";
-            return input.Split(new[] { "\r\n" }, StringSplitOptions.None)
+        private static IEnumerable<(int nummerator, int denominator)> GetInput() =>
+            "4 8\r\n1536 78360\r\n51478 5536\r\n46410 119340\r\n7673 4729\r\n4096 1024"
+                .Split(new[] {"\r\n"}, StringSplitOptions.None)
                 .Select(x => x.Split(' '))
-                .Select(y => (nummerator: int.Parse(y[0]), denominator: int.Parse(y[1])));
-        }
+                .Select(y => ( int.Parse(y[0]), int.Parse(y[1])));
     }
 }
