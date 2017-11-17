@@ -11,8 +11,24 @@ namespace Challenge.Challenges
     {
         public override void Execute()
         {
-            var input = GetInput().First();
+            foreach (var i in GetInput())
+            {
+                Solve(i.nummerator, i.denominator);
+            }
         }
+
+        private static void Solve(int nummerator, int denominator)
+        {
+            for (var i = nummerator; i > 1 ; i--)
+            {
+                if (IsFraction(nummerator, i) || IsFraction(denominator, i)) continue;
+
+                Console.WriteLine($"{nummerator} {denominator} = {nummerator / i} {denominator / i}");
+                break;
+            }
+        }
+
+        private static bool IsFraction(int a, int b) => a % b != 0;
 
         private static IEnumerable<(int nummerator, int denominator)> GetInput()
         {
