@@ -55,7 +55,8 @@ namespace Challenge
             Console.WriteLine("Available:");
             foreach (var c in classes.Select(c => c.ToString()).OrderBy(c => c))
             {
-                Console.WriteLine($" - {c}");
+                var className = c.Substring(c.LastIndexOf(".") + 1);
+                Console.WriteLine($" - {className}");
             }
             Console.WriteLine("Or type 'x' to exit...");
         }
