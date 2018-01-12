@@ -53,7 +53,8 @@ namespace Challenge
             Console.WriteLine("Available:");
             foreach (var c in classes.Select(c => c.ToString()).OrderBy(c => c))
             {
-                Console.WriteLine($" - {c}");
+                var className = c.Substring(c.LastIndexOf(".") + 1);
+                Console.WriteLine($" - {className}");
             }
             Console.WriteLine("Or type 'x' to exit...");
         }
@@ -61,9 +62,8 @@ namespace Challenge
         private static Type ChooseChallenge()
         {
             Console.WriteLine("Choose an entry: ");
-            var input = Console.ReadLine();
-            Console.WriteLine($"in: {input}");
 
+            var input = Console.ReadLine();
             if (input == "x") throw new ExitRequest();
 
             var classes = GetChallenges();
