@@ -63,9 +63,8 @@ namespace Challenge
         private static Type ChooseChallenge()
         {
             Console.WriteLine("Choose an entry: ");
-            var input = Console.ReadLine();
-            Console.WriteLine($"in: {input}");
 
+            var input = Console.ReadLine();
             if (input == "x") throw new ExitRequest();
 
             var classes = GetChallenges();
