@@ -19,10 +19,8 @@ namespace Challenge
                 try
                 {
                     var t = ChooseChallenge();
-                    var chal = t != null
-                        ? Activator.CreateInstance(t) as Challenge
-                        : throw new KeyNotFoundException();
-                    chal?.Execute();
+                    var chal = Activator.CreateInstance(t) as Challenge;
+                    chal.Execute();
                 }
                 catch (KeyNotFoundException)
                 {
@@ -70,9 +68,9 @@ namespace Challenge
 
             var classes = GetChallenges();
             var challenge = classes.Where(c => c.ToString().Contains(input)).ToList();
-            if (challenge.Count() > 1) throw new TooManyResults();
 
-            return challenge.First();
+            if (challenge.Count() > 1) throw new TooManyResults();
+            return challenge.Any() ? challenge.First() : throw new KeyNotFoundException();
         }
     }
 }
