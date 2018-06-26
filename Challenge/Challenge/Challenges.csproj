@@ -57,6 +57,7 @@
     <Compile Include="Challenges\Challenge339.cs" />
     <Compile Include="Challenges\Chal339\Employee.cs" />
     <Compile Include="Challenges\Challenge340.cs" />
+    <Compile Include="Challenges\Challenge364.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
