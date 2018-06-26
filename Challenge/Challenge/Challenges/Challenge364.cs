@@ -32,6 +32,6 @@ namespace Challenge.Challenges
             return (int.Parse(parsed.First()), int.Parse(parsed.Last()));
         }
 
-        private  int Calculate(int dice, int sides) => Enumerable.Range(0, dice).Sum(i => _random.Next(1, sides));
+        private int Calculate(int dice, int sides) => Enumerable.Range(0, dice).Sum(i => _random.Next(1, sides));
     }
 }
