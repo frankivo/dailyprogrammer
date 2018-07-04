@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Challenge.Challenges
@@ -15,8 +16,8 @@ namespace Challenge.Challenges
             while (true)
             {
                 var (dice, sides) = GetInput();
-                var output = Calculate(dice, sides);
-                Console.WriteLine($"Output: {output}");
+                var output = Calculate(dice, sides).ToList();
+                Console.WriteLine($"{output.Sum()}: {string.Join(" ", output)}");
             }
         }
 
@@ -32,6 +33,7 @@ namespace Challenge.Challenges
             return (int.Parse(parsed.First()), int.Parse(parsed.Last()));
         }
 
-        private int Calculate(int dice, int sides) => Enumerable.Range(0, dice).Sum(i => _random.Next(1, sides));
+        private IEnumerable<int> Calculate(int dice, int sides) => 
+            Enumerable.Range(0, dice).Select(i => _random.Next(1, sides));
     }
 }
