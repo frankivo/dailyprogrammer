@@ -17,7 +17,7 @@ namespace Challenge.Challenges
             {
                 var (dice, sides) = GetInput();
                 var output = Calculate(dice, sides).ToList();
-                Console.WriteLine($"{output.Sum()}: {string.Join(" ", output.ToArray())}");
+                Console.WriteLine($"{output.Sum()}: {string.Join(" ", output)}");
             }
         }
 
