@@ -11,16 +11,11 @@ namespace Challenge.Challenges
     internal class Challenge366 : Challenge
     {
         public override void Execute() =>
-            GetInput().ForEach(d => Funnel(d.Hay, d.Needle));
+            GetInput().ForEach(d => Log(d.Hay, d.Needle, Funnel(FindOptions(d.Hay), d.Needle)));
 
-        private static List<FunnelData> GetInput() =>
-            JsonConvert.DeserializeObject<List<FunnelData>>(Input);
+        private static List<FunnelData> GetInput() => JsonConvert.DeserializeObject<List<FunnelData>>(Input);
 
-        private static void Funnel(string hay, string needle) =>
-            Log(hay, needle, Funnel(FindOptions(hay), needle));
-
-        private static bool Funnel(IEnumerable<string> options, string needle) =>
-            options.Any(o => o.Equals(needle));
+        private static bool Funnel(IEnumerable<string> options, string needle) => options.Any(o => o.Equals(needle));
 
         private static void Log(string hay, string needle, bool result) =>
             Console.WriteLine($@"funnel(""{hay}"", ""{needle}"") => {result}");
