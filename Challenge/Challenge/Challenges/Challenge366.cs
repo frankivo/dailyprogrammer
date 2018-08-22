@@ -31,11 +31,8 @@ namespace Challenge.Challenges
         private static void Funnel(string haystack, string needle)
         {
             var options = FindOptions(haystack);
-            var result = Funnel(options, needle);
-            Console.WriteLine($@"funnel(""{haystack}"", ""{needle}"") => {result}");
+            Console.WriteLine($@"funnel(""{haystack}"", ""{needle}"") => {options.Contains(needle)}");
         }
-
-        private static bool Funnel(IEnumerable<string> options, string needle) => options.Any(o => o.Equals(needle));
 
         private static void Bonus(string haystack)
         {
