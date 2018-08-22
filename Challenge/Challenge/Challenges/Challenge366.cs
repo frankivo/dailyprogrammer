@@ -11,9 +11,14 @@ namespace Challenge.Challenges
     internal class Challenge366 : Challenge
     {
         public override void Execute() =>
-            GetInput().ForEach(d => Log(d.Hay, d.Needle, Funnel(FindOptions(d.Hay), d.Needle)));
+            GetInput().ToList().ForEach(i => Log(i.haystack, i.needle, Funnel(FindOptions(i.haystack), i.needle)));
 
-        private static List<FunnelData> GetInput() => JsonConvert.DeserializeObject<List<FunnelData>>(Input);
+        private static IEnumerable<(string haystack, string needle)> GetInput()
+        {
+            var input = JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(Input);
+            foreach (var i in input)
+                yield return (i["hay"], i["needle"]);
+        }
 
         private static bool Funnel(IEnumerable<string> options, string needle) => options.Any(o => o.Equals(needle));
 
@@ -32,11 +37,5 @@ namespace Challenge.Challenges
                 { ""hay"": ""skiff"", ""needle"": ""ski"" },
                 { ""hay"": ""boats"", ""needle"": ""oats"" }
               ]";
-
-        private struct FunnelData
-        {
-            public string Hay;
-            public string Needle;
-        }
     }
 }
