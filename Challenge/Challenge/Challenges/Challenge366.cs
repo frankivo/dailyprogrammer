@@ -17,10 +17,13 @@ namespace Challenge.Challenges
             JsonConvert.DeserializeObject<List<FunnelData>>(Input);
 
         private static void Funnel(string hay, params string[] needles) =>
-            needles.ToList().ForEach(needle => Console.WriteLine($"{hay} -- {needle} -- {Funnel(FindOptions(hay), needle)}"));
+            needles.ToList().ForEach(needle => Log(hay, needle, Funnel(FindOptions(hay), needle)));
 
         private static bool Funnel(IEnumerable<string> options, string needle) =>
             options.Any(o => o.Equals(needle));
+
+        private static void Log(string hay, string needle, bool result) =>
+            Console.WriteLine($@"funnel(""{hay}"", ""{needle}"") => {result}");
 
         private static IEnumerable<string> FindOptions(string hay) =>
             hay.Select((t, i) => hay.Substring(0, i) + hay.Substring(i + 1)).ToList();
