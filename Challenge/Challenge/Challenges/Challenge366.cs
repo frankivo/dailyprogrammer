@@ -8,7 +8,7 @@ namespace Challenge.Challenges
     /// <summary>
     /// https://www.reddit.com/r/dailyprogrammer/comments/98ufvz/20180820_challenge_366_easy_word_funnel_1/
     /// </summary>
-    internal class Challenge366 : Challenge
+    public class Challenge366 : Challenge
     {
         public override void Execute()
         {
@@ -40,7 +40,7 @@ namespace Challenge.Challenges
             Console.WriteLine($@"bonus(""{haystack}"") => {options}");
         }
 
-        private static IEnumerable<string> FindOptions(string hay) =>
+        protected static IEnumerable<string> FindOptions(string hay) =>
             new HashSet<string>(hay.Select((t, i) => hay.Substring(0, i) + hay.Substring(i + 1)));
 
         private const string Input = @"[
