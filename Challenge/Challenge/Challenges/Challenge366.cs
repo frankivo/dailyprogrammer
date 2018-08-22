@@ -10,8 +10,16 @@ namespace Challenge.Challenges
     /// </summary>
     internal class Challenge366 : Challenge
     {
-        public override void Execute() =>
-            GetInput().ToList().ForEach(i => Log(i.haystack, i.needle, Funnel(FindOptions(i.haystack), i.needle)));
+        public override void Execute()
+        {
+            Challenge();
+            Console.WriteLine();
+            Bonus();
+        }
+
+        private static void Challenge() => GetInput().ToList().ForEach(i => Funnel(i.haystack, i.needle));
+
+        private static void Bonus() => JsonConvert.DeserializeObject<List<string>>(Bonus1).ForEach(Bonus);
 
         private static IEnumerable<(string haystack, string needle)> GetInput()
         {
@@ -20,13 +28,23 @@ namespace Challenge.Challenges
                 yield return (i["hay"], i["needle"]);
         }
 
+        private static void Funnel(string haystack, string needle)
+        {
+            var options = FindOptions(haystack);
+            var result = Funnel(options, needle);
+            Console.WriteLine($@"funnel(""{haystack}"", ""{needle}"") => {result}");
+        }
+
         private static bool Funnel(IEnumerable<string> options, string needle) => options.Any(o => o.Equals(needle));
 
-        private static void Log(string hay, string needle, bool result) =>
-            Console.WriteLine($@"funnel(""{hay}"", ""{needle}"") => {result}");
+        private static void Bonus(string haystack)
+        {
+            var options = string.Join(", ", FindOptions(haystack).Select(o => $@"""[{o}]"""));
+            Console.WriteLine($@"bonus(""{haystack}"") => {options}");
+        }
 
         private static IEnumerable<string> FindOptions(string hay) =>
-            hay.Select((t, i) => hay.Substring(0, i) + hay.Substring(i + 1)).ToList();
+            new HashSet<string>(hay.Select((t, i) => hay.Substring(0, i) + hay.Substring(i + 1)));
 
         private const string Input = @"[
                 { ""hay"": ""leave"", ""needle"": ""eave"" },
@@ -34,8 +52,9 @@ namespace Challenge.Challenges
                 { ""hay"": ""dragoon"", ""needle"": ""dragon"" },
                 { ""hay"": ""eave"", ""needle"": ""leave"" },
                 { ""hay"": ""sleet"", ""needle"": ""lets"" },
-                { ""hay"": ""skiff"", ""needle"": ""ski"" },
-                { ""hay"": ""boats"", ""needle"": ""oats"" }
+                { ""hay"": ""skiff"", ""needle"": ""ski"" }
               ]";
+
+        private const string Bonus1 = @"[ ""dragoon"", ""boats"", ""affidavit"" ]";
     }
 }
