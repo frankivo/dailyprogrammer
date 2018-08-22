@@ -17,13 +17,12 @@ namespace Challenge.Challenges
             JsonConvert.DeserializeObject<List<FunnelData>>(Input);
 
         private static void Funnel(string hay, params string[] needles) =>
-            needles.ToList().ForEach(needle => Console.WriteLine($"{hay} -- {needle} -- {Funnel(hay, needle)}"));
+            needles.ToList().ForEach(needle => Console.WriteLine($"{hay} -- {needle} -- {Funnel(FindOptions(hay), needle)}"));
 
-        private static bool Funnel(string hay, string needle) =>
-            FindOptions(hay).Where(o => o.Equals(needle)).ToList().Count > 0;
+        private static bool Funnel(IEnumerable<string> options, string needle) =>
+            options.Any(o => o.Equals(needle));
 
-        // ReSharper disable once ReturnTypeCanBeEnumerable.Local
-        private static List<string> FindOptions(string hay) =>
+        private static IEnumerable<string> FindOptions(string hay) =>
             hay.Select((t, i) => hay.Substring(0, i) + hay.Substring(i + 1)).ToList();
 
         private const string Input = @"[
