@@ -19,10 +19,12 @@ namespace Challenge.Challenges
         private static void Funnel(string hay, params string[] needles) =>
             needles.ToList().ForEach(needle => Console.WriteLine($"{hay} -- {needle} -- {Funnel(hay, needle)}"));
 
-        private static bool Funnel(string hay, string needle)
-        {
-            return hay.Length > needle.Length;
-        }
+        private static bool Funnel(string hay, string needle) =>
+            FindOptions(hay).Where(o => o.Equals(needle)).ToList().Count > 0;
+
+        // ReSharper disable once ReturnTypeCanBeEnumerable.Local
+        private static List<string> FindOptions(string hay) =>
+            hay.Select((t, i) => hay.Substring(0, i) + hay.Substring(i + 1)).ToList();
 
         private const string Input = @"[
                 { ""hay"": ""leave"", ""needles"": [ ""eave"" ] },
