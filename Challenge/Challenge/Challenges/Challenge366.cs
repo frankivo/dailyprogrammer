@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +28,10 @@ namespace Challenge.Challenges
         private const string Input = @"[
                 { ""hay"": ""leave"", ""needles"": [ ""eave"" ] },
                 { ""hay"": ""reset"", ""needles"": [ ""rest"" ] },
+                { ""hay"": ""dragoon"", ""needles"": [ ""dragon"" ] },
+                { ""hay"": ""eave"", ""needles"": [ ""leave"" ] },
+                { ""hay"": ""sleet"", ""needles"": [ ""lets"" ] },
+                { ""hay"": ""skiff"", ""needles"": [ ""ski"" ] },
                 { ""hay"": ""boats"", ""needles"": [ ""oats"", ""bats"", ""bots"", ""boas"", ""boat"" ] }
               ]";
 
