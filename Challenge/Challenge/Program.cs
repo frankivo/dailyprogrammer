@@ -16,11 +16,12 @@ namespace Challenge
             while (!end)
             {
                 ListChallenges();
+                Challenge chal = null;
                 try
                 {
                     var t = ChooseChallenge();
-                    var chal = Activator.CreateInstance(t) as Challenge;
-                    chal.Execute();
+                    chal = Activator.CreateInstance(t) as Challenge;
+                    
                 }
                 catch (KeyNotFoundException)
                 {
@@ -33,6 +34,11 @@ namespace Challenge
                 catch (ExitRequest)
                 {
                     end = true;
+                }
+
+                try
+                {
+                    chal?.Execute();
                 }
                 catch (Exception ex)
                 {
