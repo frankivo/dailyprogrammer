@@ -8,12 +8,13 @@ namespace Challenge.Test
     public class Test366 : Challenge366
     {
         [DataTestMethod]
+        [DataRow("a", 1)]
         [DataRow("ab", 2)]
         [DataRow("abc", 3)]
         [DataRow("abcd", 4)]
         public void TestGetOptions(string input, int expected)
         {
-            Assert.AreEqual(expected, FindOptions(input).Count());
+            Assert.AreEqual(expected, GetOptions(input).Count());
         }
     }
 }

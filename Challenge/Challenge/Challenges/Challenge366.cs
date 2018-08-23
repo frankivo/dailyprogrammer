@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,17 +30,17 @@ namespace Challenge.Challenges
 
         private static void Funnel(string haystack, string needle)
         {
-            var options = FindOptions(haystack);
+            var options = GetOptions(haystack);
             Console.WriteLine($@"funnel(""{haystack}"", ""{needle}"") => {options.Contains(needle)}");
         }
 
         private static void Bonus(string haystack)
         {
-            var options = string.Join(", ", FindOptions(haystack).Select(o => $@"""[{o}]"""));
+            var options = string.Join(", ", GetOptions(haystack).Select(o => $@"""[{o}]"""));
             Console.WriteLine($@"bonus(""{haystack}"") => {options}");
         }
 
-        protected static IEnumerable<string> FindOptions(string hay) =>
+        protected static IEnumerable<string> GetOptions(string hay) =>
             new HashSet<string>(hay.Select((t, i) => hay.Substring(0, i) + hay.Substring(i + 1)));
 
         private const string Input = @"[
