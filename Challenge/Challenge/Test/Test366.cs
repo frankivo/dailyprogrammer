@@ -12,9 +12,13 @@ namespace Challenge.Test
         [DataRow("ab", 2)]
         [DataRow("abc", 3)]
         [DataRow("abcd", 4)]
-        public void TestGetOptions(string input, int expected)
-        {
+        public void TestGetOptions(string input, int expected) => 
             Assert.AreEqual(expected, GetOptions(input).Count());
-        }
+
+        [DataTestMethod]
+        [DataRow("test", "tst", true)]
+        [DataRow("aap", "pa", false)]
+        public void TestFunnel(string haystack, string needle, bool expected) =>
+            Assert.AreEqual(expected, Funnel(haystack, needle));
     }
 }
