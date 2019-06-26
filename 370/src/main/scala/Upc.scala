@@ -35,4 +35,6 @@ object Upc {
     evens + step2
   }
 
+  def step4(step3: Int) : Int = step3 % 10
+
 }

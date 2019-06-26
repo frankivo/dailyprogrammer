@@ -27,4 +27,8 @@ class TestUpc extends TestCase {
     assertEquals(result, Upc.step3(code, 42))
   }
 
+  def testStep4() : Unit = {
+    assertEquals(8, Upc.step4(58))
+  }
+
 }
