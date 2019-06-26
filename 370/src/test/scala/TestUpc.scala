@@ -11,13 +11,20 @@ class TestUpc extends TestCase {
 
   def testStep1(): Unit = {
     val code = 3_600_029_145L
-    val sum = 14
+    val result = 14
 
-    assertEquals(sum, Upc.step1(code))
+    assertEquals(result, Upc.step1(code))
   }
 
   def testStep2() : Unit = {
     assertEquals(42, Upc.step2(14))
+  }
+
+  def testStep3() : Unit = {
+    val code = 3_600_029_145L
+    val result = 58
+
+    assertEquals(result, Upc.step3(code, 42))
   }
 
 }

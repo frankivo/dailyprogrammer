@@ -21,12 +21,18 @@ object Upc {
   def calcChecksum(code: Long): Int = {
     val s1 = step1(code)
     val s2 = step2(s1)
+    val s3 = step3(code, s2)
 
     123
   }
 
   def step1(code: Long): Int = code.toIntList.indices.collect { case i if i % 2 == 1 => code.toIntList(i) }.sum
 
-  def step2(code: Int): Int = code * 3
+  def step2(step1: Int): Int = step1 * 3
+
+  def step3(code: Long, step2: Int): Int = {
+    val evens = code.toIntList.indices.collect { case i if i % 2 == 0 => code.toIntList(i) }.sum
+    evens + step2
+  }
 
 }
