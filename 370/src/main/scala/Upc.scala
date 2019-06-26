@@ -22,8 +22,8 @@ object Upc {
     val s1 = step1(code)
     val s2 = step2(s1)
     val s3 = step3(code, s2)
-
-    123
+    val s4 = step4(s3)
+    step5(s4)
   }
 
   def step1(code: Long): Int = code.toIntList.indices.collect { case i if i % 2 == 1 => code.toIntList(i) }.sum
@@ -35,6 +35,8 @@ object Upc {
     evens + step2
   }
 
-  def step4(step3: Int) : Int = step3 % 10
+  def step4(step3: Int): Int = step3 % 10
+
+  def step5(step4: Int): Int = if (step4 == 0) 0 else 10 - step4
 
 }

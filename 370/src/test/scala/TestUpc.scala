@@ -3,32 +3,26 @@ import org.junit.Assert._
 
 class TestUpc extends TestCase {
 
-  def testMe(): Unit = {
-    val expected = 4
-    val actual = Upc.calcChecksum(4210000526L)
-    assertEquals(expected, actual)
-  }
+  def testChecksum1(): Unit = assertEquals(2, Upc.calcChecksum(3600029145L))
 
-  def testStep1(): Unit = {
-    val code = 3_600_029_145L
-    val result = 14
+  def testChecksum2(): Unit = assertEquals(4, Upc.calcChecksum(4210000526L))
 
-    assertEquals(result, Upc.step1(code))
-  }
+  def testChecksum3(): Unit = assertEquals(2, Upc.calcChecksum(3_600_029_145L))
 
-  def testStep2() : Unit = {
-    assertEquals(42, Upc.step2(14))
-  }
+  def testChecksum4(): Unit = assertEquals(4, Upc.calcChecksum(12_345_678_910L))
 
-  def testStep3() : Unit = {
-    val code = 3_600_029_145L
-    val result = 58
+  def testChecksum5(): Unit = assertEquals(0, Upc.calcChecksum(1234567L))
 
-    assertEquals(result, Upc.step3(code, 42))
-  }
+  def testStep1(): Unit = assertEquals(14, Upc.step1(3_600_029_145L))
 
-  def testStep4() : Unit = {
-    assertEquals(8, Upc.step4(58))
-  }
+  def testStep2(): Unit = assertEquals(42, Upc.step2(14))
+
+  def testStep3(): Unit = assertEquals(58, Upc.step3(3_600_029_145L, 42))
+
+  def testStep4(): Unit = assertEquals(8, Upc.step4(58))
+
+  def testStep5Zero(): Unit = assertEquals(0, Upc.step5(0))
+
+  def testStep5NonZero(): Unit = assertEquals(2, Upc.step5(8))
 
 }
