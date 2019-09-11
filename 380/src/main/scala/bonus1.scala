@@ -1,3 +1,8 @@
+/*
+ The sequence -...-....-.--. is the code for four different words (needing, nervate, niding, tiling).
+ Find the only sequence that's the code for 13 different words.
+ */
+
 object bonus1 {
   def main(args: Array[String]): Unit = {
     // morse => Array of words

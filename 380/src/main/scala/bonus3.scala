@@ -1,3 +1,8 @@
+/*
+  Call a word perfectly balanced if its code has the same number of dots as dashes.
+  counterdemonstrations is one of two 21-letter words that's perfectly balanced. Find the other one.
+ */
+
 object bonus3 {
   def main(args: Array[String]): Unit = {
     helper
@@ -6,6 +11,12 @@ object bonus3 {
       .flatMap(x => x.length match { // Filter only words of length 21
         case 21 => Some(x)
         case _ => None
+      })
+      .flatMap(x => { // Filter "counterdemonstrations"
+        x match {
+          case "counterdemonstrations" => None
+          case _ => Some(x)
+        }
       })
       .map(w => (w, morse.smorse(w))) // Calculate morse
       .flatMap(x => { // Keep morse words with an equal amount of dots and dashes

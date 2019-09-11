@@ -1,3 +1,7 @@
+/*
+  autotomous encodes to .-..--------------..-..., which has 14 dashes in a row. Find the only word that has 15 dashes in a row.
+ */
+
 object bonus2 {
   def main(args: Array[String]): Unit = {
     helper
