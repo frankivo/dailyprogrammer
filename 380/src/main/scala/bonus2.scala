@@ -10,11 +10,8 @@ object bonus2 {
       .getFile("https://raw.githubusercontent.com/dolph/dictionary/master/enable1.txt")
       .getLines
       .map(w => (w, morse.smorse(w))) // Calculate morse
-      .flatMap(m => { // Filter morse with 15 dashes in a row
-        if (m._2.contains(dash15)) Some(m._1)
-        else None
-      })
+      .filter(x => x._2.contains(dash15)) // Filter morse with 15 dashes in a row
+      .map(x => x._1) // Return only word
       .foreach(println)
   }
-
 }

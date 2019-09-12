@@ -9,17 +9,10 @@ object bonus4 {
     helper
       .getFile("https://raw.githubusercontent.com/dolph/dictionary/master/enable1.txt")
       .getLines
-      .flatMap(x => { // filter 13 letter words
-        x.length match {
-          case 13 => Some(x)
-          case _ => None
-        }
-      })
+      .filter(x => x.length.equals(13) )  // filter 13 letter words
       .map(w => (w, morse.smorse(w))) // Calculate morse
-      .flatMap(x => { // filter palindromes
-        if (x._2.reverse.equals(x._2)) Some(x._1)
-        else None
-      })
+      .filter(x => x._2.reverse.equals(x._2)) // Filter palindromes
+      .map(x => x._1)  // Return only word
       .foreach(println)
   }
 }

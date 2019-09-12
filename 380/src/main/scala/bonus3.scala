@@ -8,16 +8,8 @@ object bonus3 {
     helper
       .getFile("https://raw.githubusercontent.com/dolph/dictionary/master/enable1.txt")
       .getLines
-      .flatMap(x => x.length match { // Filter only words of length 21
-        case 21 => Some(x)
-        case _ => None
-      })
-      .flatMap(x => { // Filter "counterdemonstrations"
-        x match {
-          case "counterdemonstrations" => None
-          case _ => Some(x)
-        }
-      })
+      .filter(x => x.length.equals(21)) // Filter only words of length 21
+      .filter(x => !x.equals("counterdemonstrations")) // Filter out "counterdemonstrations"
       .map(w => (w, morse.smorse(w))) // Calculate morse
       .flatMap(x => { // Keep morse words with an equal amount of dots and dashes
         var dots = 0
