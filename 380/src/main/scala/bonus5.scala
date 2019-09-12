@@ -20,16 +20,16 @@ object bonus5 {
 
   def generateSequences: Array[String] = {
     val list = mutable.MutableList[String]()
-    generateWords(list)
+    generateSequences(list)
     list.toArray
   }
 
-  def generateWords(list: mutable.MutableList[String], word: String = ""): Unit = {
+  def generateSequences(list: mutable.MutableList[String], word: String = ""): Unit = {
     if (word.length == 13)
       list += word
     else {
-      generateWords(list, word + '.')
-      generateWords(list, word + '-')
+      generateSequences(list, word + '.')
+      generateSequences(list, word + '-')
     }
   }
 }
