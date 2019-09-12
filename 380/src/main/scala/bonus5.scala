@@ -18,10 +18,10 @@ object bonus5 {
       .foreach(println)
   }
 
-  def generateSequences: Array[String] = {
+  def generateSequences: Seq[String] = {
     val list = mutable.MutableList[String]()
     generateSequences(list)
-    list.toArray
+    list.toSeq
   }
 
   def generateSequences(list: mutable.MutableList[String], word: String = ""): Unit = {

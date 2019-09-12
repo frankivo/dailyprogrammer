@@ -5,14 +5,14 @@
 
 object bonus1 {
   def main(args: Array[String]): Unit = {
-    // morse => Array of words
-    val map = scala.collection.mutable.Map[String, Array[String]]()
+    // morse => Sequence of words
+    val map = scala.collection.mutable.Map[String, Seq[String]]()
 
     helper
       .getFile("https://raw.githubusercontent.com/dolph/dictionary/master/enable1.txt")
       .getLines
       .map(w => (morse.smorse(w), w)) // Calculate morse
-      .foreach(x => map(x._1) = map.getOrElse(x._1, Array[String]()) ++ Array[String](x._2)) // Store morse in map
+      .foreach(x => map(x._1) = map.getOrElse(x._1, Seq[String]()) ++ Seq[String](x._2)) // Store morse in map
 
     map
       .flatMap(x => { // Filter only morse that has 13 source-words.
