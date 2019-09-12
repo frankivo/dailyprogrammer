@@ -11,16 +11,8 @@ object bonus3 {
       .filter(x => x.length.equals(21)) // Filter only words of length 21
       .filter(x => !x.equals("counterdemonstrations")) // Filter out "counterdemonstrations"
       .map(w => (w, morse.smorse(w))) // Calculate morse
-      .flatMap(x => { // Keep morse words with an equal amount of dots and dashes
-        var dots = 0
-        var dashes = 0
-        x._2.foreach(x => { // Count dots and dashes for morse
-          if (x.equals('.')) dots = dots + 1
-          else dashes = dashes + 1
-        })
-        if (dots == dashes) Some(x._1)
-        else None
-      })
+      .filter(x => x._2.filter(c => c.equals('.')).length.equals(x._2.filter(c => c.equals('-')).length)) // Keep morse words with an equal amount of dots and dashes
+      .map(x => x._1) // Return only word
       .foreach(println)
   }
 }
