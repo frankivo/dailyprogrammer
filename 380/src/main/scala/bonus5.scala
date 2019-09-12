@@ -6,22 +6,30 @@ import scala.collection.mutable
 
 object bonus5 {
   def main(args: Array[String]): Unit = {
+    val allMorse = helper
+      .getFile("https://raw.githubusercontent.com/dolph/dictionary/master/enable1.txt")
+      .getLines()
+      .map(l => morse.smorse(l))
+      .toSet
+
     generateSequences
+      .filter(x => !allMorse.exists(k => k.contains(x)))
+      .filter(x => !x.equals("--.---.---.--"))
+      .foreach(println)
   }
 
-  def generateSequences: List[String] = {
+  def generateSequences: Array[String] = {
     val list = mutable.MutableList[String]()
     generateWords(list)
-    list.toList
+    list.toArray
   }
 
-  def generateWords(list : mutable.MutableList[String], word: String = ""): Unit = {
-    word.length match {
-      case 13 => list += word
-      case _ =>
-        generateWords(list, word + "-")
-        generateWords(list, word + ".")
+  def generateWords(list: mutable.MutableList[String], word: String = ""): Unit = {
+    if (word.length == 13)
+      list += word
+    else {
+      generateWords(list, word + '.')
+      generateWords(list, word + '-')
     }
   }
-
 }
