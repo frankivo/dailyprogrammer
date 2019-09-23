@@ -2,8 +2,6 @@
 https://www.reddit.com/r/dailyprogrammer/comments/cdieag/20190715_challenge_379_easy_progressive_taxation/
  */
 
-case class Bracket(incomeCap: Option[Int], taxRate: Double)
-
 case class LimitedBracket(min: Int, max: Option[Int], rate: Double)
 
 object Tax {
@@ -18,17 +16,10 @@ object Tax {
     var tax = 0
 
     for (i <- Taxes.indices) {
-      val t = Taxes(i)
-      val max = t.max.getOrElse(Int.MaxValue)
-
-      //      println(amount + " : " + max)
-      if (amount > max) {
-        tax = tax + (t.rate * max).toInt
-      }
-      else {
-        val maxSum = Taxes.take(i - 1).map(x => x.max.getOrElse(Int.MaxValue)).sum
+      if (amount > Taxes(i).min) {
+        val maxSum = Taxes.take(i).map(x => x.max.getOrElse(Int.MaxValue)).sum
         val toTax = amount - maxSum
-        val newTax = (t.rate * toTax).toInt
+        val newTax = (Taxes(i).rate * toTax).round.toInt
         tax = tax + newTax
       }
     }
@@ -37,7 +28,9 @@ object Tax {
   }
 
   def main(args: Array[String]): Unit = {
-    println(tax(40000))
-    //    tax(40000)
+    List(0, 10_000, 10_009, 10_010, 12_000, 56_789, 1_234_567)
+      .foreach(a => {
+        println("%s: %s".format(a, tax(a)))
+      })
   }
 }
