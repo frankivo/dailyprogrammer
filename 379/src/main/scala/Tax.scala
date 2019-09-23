@@ -7,9 +7,9 @@ case class LimitedBracket(min: Int, max: Option[Int], rate: Double)
 object Tax {
   private val Taxes = List[LimitedBracket](
     LimitedBracket(0, Some(10000), 0.0),
-    LimitedBracket(10001, Some(30000), 0.1),
-    LimitedBracket(30001, Some(100000), 0.25),
-    LimitedBracket(1000001, None, 0.4)
+    LimitedBracket(10_001, Some(30_000), 0.1),
+    LimitedBracket(30_001, Some(100_000), 0.25),
+    LimitedBracket(100_001, None, 0.4)
   )
 
   def tax(amount: Int): Int = {
