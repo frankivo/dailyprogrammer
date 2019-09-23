@@ -4,6 +4,8 @@ import java.net.URL
 import scala.io.BufferedSource
 import scala.sys.process._
 
+import scala.language.postfixOps
+
 object helper {
   def getFile(url: String): BufferedSource = {
       getLocalFile(getFilename(url)) match {

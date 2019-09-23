@@ -19,12 +19,12 @@ object bonus5 {
   }
 
   def generateSequences: Seq[String] = {
-    val list = mutable.MutableList[String]()
+    val list = mutable.ArrayDeque[String]()
     generateSequences(list)
     list.toSeq
   }
 
-  def generateSequences(list: mutable.MutableList[String], word: String = ""): Unit = {
+  def generateSequences(list: mutable.ArrayDeque[String], word: String = ""): Unit = {
     if (word.length == 13)
       list += word
     else {
