@@ -17,29 +17,21 @@ object Tax {
 
     for (i <- Taxes.indices) {
       val bracket = Taxes(i)
+      var toTax = 0
 
-      if (amount > bracket.max) {
-        val toTax = bracket.max - bracket.min
-        val newTax = (toTax * bracket.rate).round.toInt
-        tax = tax + newTax
-      }
-      else if (amount > bracket.min) {
-        val blaat = Taxes.take(i).map(t => t.max - t.min).sum
-        val toTax = amount - blaat
-        val newTax = (toTax * bracket.rate).round.toInt
-        tax = tax + newTax
-      }
+      if (amount > bracket.max)
+        toTax = bracket.max - bracket.min
+      else if (amount > bracket.min)
+        toTax = amount - Taxes.take(i).map(t => t.max - t.min).sum
 
+      tax = tax + (toTax * bracket.rate).round.toInt
     }
 
     tax
   }
 
   def main(args: Array[String]): Unit = {
-    //    List(0, 10_000, 10_009, 10_010, 12_000, 56_789, 1_234_567)
-    List(56_789)
-      .foreach(a => {
-        println("%s: %s".format(a, tax(a)))
-      })
+    List(0, 10_000, 10_009, 10_010, 12_000, 56_789, 1_234_567)
+      .foreach(a => println("%s: %s".format(a, tax(a))))
   }
 }
