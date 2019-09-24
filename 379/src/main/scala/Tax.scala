@@ -26,20 +26,18 @@ object Tax {
   }
 
   def tax(amount: Int): Int = {
-    val taxBrackets = calcTaxes()
     var tax = 0
 
-    for (i <- taxBrackets.indices) {
-      val bracket = taxBrackets(i)
+    calcTaxes().foreach(bracket => {
       var toTax = 0
 
       if (amount > bracket.max)
         toTax = bracket.max - bracket.min
       else if (amount > bracket.min)
-        toTax = amount - taxBrackets.take(i).map(t => t.max - t.min).sum
+        toTax = amount - bracket.min
 
       tax = tax + (toTax * bracket.rate).round.toInt
-    }
+    })
 
     tax
   }
