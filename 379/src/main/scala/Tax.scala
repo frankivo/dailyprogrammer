@@ -20,7 +20,7 @@ object Tax {
     Taxes.map(t => {
       val max = t.max.getOrElse(Int.MaxValue)
       val bracket = LimitedBracket(min, max, t.rate)
-      min = max
+      min = max + 1
       bracket
     })
   }
