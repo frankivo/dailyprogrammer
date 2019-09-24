@@ -14,7 +14,7 @@ object Tax {
     Bracket(None, 0.40)
   )
 
-  def calcTaxes(): List[LimitedBracket] = {
+  def calcTaxes: List[LimitedBracket] = {
     var min = 0
 
     Taxes.map(t => {
@@ -28,7 +28,7 @@ object Tax {
   def tax(amount: Int): Int = {
     var tax = 0
 
-    calcTaxes().foreach(bracket => {
+    calcTaxes.foreach(bracket => {
       var toTax = 0
 
       if (amount > bracket.max)
