@@ -17,5 +17,9 @@ object Boxes {
   so that you can treat a set of 6-by-5 boxes as a set of 5-by-6 boxes.
   You do not have the option of rotating some of the boxes but not others.
    */
-  def fit2(crate: Point, box: Point): Int = 0
+  def fit2(crate: Point, box: Point): Int = {
+    val a = fit1(crate, box)
+    val b = fit1(crate, Point(box.y, box.x))
+    if (a > b) a else b
+  }
 }
