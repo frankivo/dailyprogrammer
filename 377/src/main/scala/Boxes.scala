@@ -37,4 +37,13 @@ object Boxes {
       (crateX / boxZ) * (crateY / boxY) * (createZ / boxX),
     ).max
   }
+
+  /*
+  Now you take a list of N crate dimensions, and N box dimensions.
+  Assume that the boxes may be rotated in any of N! orientations so that each axis of the crate aligns with a different axis of the boxes.
+  Again, boxes cannot be rotated independently.
+   */
+  def fitN(crates: List[Int], boxes: List[Int]): Int = {
+    0
+  }
 }
