@@ -1,3 +1,4 @@
+
 /*
 https://www.reddit.com/r/dailyprogrammer/comments/bazy5j/20190408_challenge_377_easy_axisaligned_crate/
  */
@@ -40,10 +41,19 @@ object Boxes {
 
   /*
   Now you take a list of N crate dimensions, and N box dimensions.
-  Assume that the boxes may be rotated in any of N! orientations so that each axis of the crate aligns with a different axis of the boxes.
+  Assume that the boxes may be rotated in any of N! orientations,
+   so that each axis of the crate aligns with a different axis of the boxes.
   Again, boxes cannot be rotated independently.
    */
   def fitN(crates: List[Int], boxes: List[Int]): Int = {
-    0
+    var bestMax = 0
+    for (i <- 0 until crates.length) {
+      for (j <- 0 until crates.length) {
+        val newMax = crates(i) / boxes(j)
+        if (newMax > bestMax)
+          bestMax = newMax
+      }
+    }
+    bestMax
   }
 }
