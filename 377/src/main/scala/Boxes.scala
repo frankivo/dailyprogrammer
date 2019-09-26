@@ -12,4 +12,10 @@ object Boxes {
    */
   def fit1(crate: Point, box: Point): Int = (crate.x / box.x) * (crate.y / box.y)
 
+  /*
+  You now have the option of rotating all boxes by 90 degrees,
+  so that you can treat a set of 6-by-5 boxes as a set of 5-by-6 boxes.
+  You do not have the option of rotating some of the boxes but not others.
+   */
+  def fit2(crate: Point, box: Point): Int = 0
 }
