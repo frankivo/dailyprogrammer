@@ -20,4 +20,14 @@ object Boxes {
     val b = fit1(crateX, crateY, boxY, boxX)
     if (a > b) a else b
   }
+
+  /*
+  You're now given six parameters, X, Y, Z, x, y, and z.
+  That is, you're given the X, Y, and Z dimensions of the crate, and the x, y, and z dimensions of the boxes.
+  There are now six different possible orientations of the boxes.
+  Again, boxes cannot be rotated independently: they all have to have the same orientation.
+   */
+  def fit3(crateX: Int, crateY: Int, createZ: Int, boxX: Int, boxY: Int, boxZ: Int): Int = {
+    0
+  }
 }
