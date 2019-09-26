@@ -28,6 +28,13 @@ object Boxes {
   Again, boxes cannot be rotated independently: they all have to have the same orientation.
    */
   def fit3(crateX: Int, crateY: Int, createZ: Int, boxX: Int, boxY: Int, boxZ: Int): Int = {
-    0
+    List(
+      (crateX / boxX) * (crateY / boxY) * (createZ / boxZ),
+      (crateX / boxX) * (crateY / boxZ) * (createZ / boxY),
+      (crateX / boxY) * (crateY / boxX) * (createZ / boxZ),
+      (crateX / boxY) * (crateY / boxZ) * (createZ / boxX),
+      (crateX / boxZ) * (crateY / boxX) * (createZ / boxY),
+      (crateX / boxZ) * (crateY / boxY) * (createZ / boxX),
+    ).max
   }
 }
