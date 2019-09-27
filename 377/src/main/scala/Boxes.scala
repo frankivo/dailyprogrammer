@@ -16,11 +16,8 @@ object Boxes {
   so that you can treat a set of 6-by-5 boxes as a set of 5-by-6 boxes.
   You do not have the option of rotating some of the boxes but not others.
    */
-  def fit2(crateX: Int, crateY: Int, boxX: Int, boxY: Int): Int = {
-    val a = fit1(crateX, crateY, boxX, boxY)
-    val b = fit1(crateX, crateY, boxY, boxX)
-    if (a > b) a else b
-  }
+  def fit2(crateX: Int, crateY: Int, boxX: Int, boxY: Int): Int =
+    List(fit1(crateX, crateY, boxX, boxY), fit1(crateX, crateY, boxY, boxX)).max
 
   /*
   You're now given six parameters, X, Y, Z, x, y, and z.
@@ -37,7 +34,6 @@ object Boxes {
    so that each axis of the crate aligns with a different axis of the boxes.
   Again, boxes cannot be rotated independently.
    */
-  def fitN(crate: List[Int], box: List[Int]): Int = {
+  def fitN(crate: List[Int], box: List[Int]): Int =
     box.permutations.map(b => crate.zip(b).map(x => x._1 / x._2).product).max
-  }
 }
