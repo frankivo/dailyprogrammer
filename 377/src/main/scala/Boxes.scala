@@ -37,15 +37,20 @@ object Boxes {
    so that each axis of the crate aligns with a different axis of the boxes.
   Again, boxes cannot be rotated independently.
    */
-  def fitN(crates: List[Int], boxes: List[Int]): Int = {
-    var bestMax = 0
-    for (i <- 0 until crates.length) {
-      for (j <- 0 until crates.length) {
-        val newMax = crates(i) / boxes(j)
-        if (newMax > bestMax)
-          bestMax = newMax
+  def fitN(crate: List[Int], box: List[Int]): Int = {
+    var bestFit = 0
+
+    box.permutations.foreach(b => {
+      var fit = 1
+
+      for (i <- b.indices) {
+        fit = fit * (crate(i) / b(i))
       }
-    }
-    bestMax
+
+      if (fit > bestFit)
+        bestFit = fit
+    })
+
+    bestFit
   }
 }
