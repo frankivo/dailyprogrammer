@@ -28,16 +28,8 @@ object Boxes {
   There are now six different possible orientations of the boxes.
   Again, boxes cannot be rotated independently: they all have to have the same orientation.
    */
-  def fit3(crateX: Int, crateY: Int, createZ: Int, boxX: Int, boxY: Int, boxZ: Int): Int = {
-    List(
-      (crateX / boxX) * (crateY / boxY) * (createZ / boxZ),
-      (crateX / boxX) * (crateY / boxZ) * (createZ / boxY),
-      (crateX / boxY) * (crateY / boxX) * (createZ / boxZ),
-      (crateX / boxY) * (crateY / boxZ) * (createZ / boxX),
-      (crateX / boxZ) * (crateY / boxX) * (createZ / boxY),
-      (crateX / boxZ) * (crateY / boxY) * (createZ / boxX),
-    ).max
-  }
+  def fit3(crateX: Int, crateY: Int, createZ: Int, boxX: Int, boxY: Int, boxZ: Int): Int =
+    List(boxX, boxY, boxZ).permutations.map(m => (crateX / m(0)) * (crateY / m(1)) * (createZ / m(2))).max
 
   /*
   Now you take a list of N crate dimensions, and N box dimensions.
