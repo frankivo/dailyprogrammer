@@ -8,5 +8,5 @@ object main {
 
   // Given a sequence of answers, return the sequence sorted in descending order,
   // so that the first number is the largest and the last number is the smallest.
-  def warmup2(numbers: Array[Int]): Array[Int] = Array[Int]()
+  def warmup2(numbers: Array[Int]): Array[Int] = numbers.sorted.reverse
 }
