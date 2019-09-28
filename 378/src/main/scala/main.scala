@@ -14,4 +14,8 @@ object main {
   // return true if N is greater than the number of answers (i.e. the length of the sequence),
   // and false if N is less than or equal to the number of answers.
   def warmup3(N: Int, answers: Array[Int]): Boolean = N > answers.length
+
+  // Given a number N and a sequence in descending order,
+  // subtract 1 from each of the first N answers in the sequence, and return the result.
+  def warmup4(N: Int, answers: Array[Int]): Array[Int] = answers
 }
