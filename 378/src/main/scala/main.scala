@@ -19,4 +19,6 @@ object main {
   // subtract 1 from each of the first N answers in the sequence, and return the result.
   def warmup4(N: Int, answers: Array[Int]): Array[Int] =
     answers.take(N).map(_ - 1) ++ answers.slice(N, answers.length)
+
+  def hh(answers: Array[Int]) : Boolean = false
 }
