@@ -4,14 +4,14 @@
 
 object main {
   // Given a sequence of answers, return the same set of answers with all the 0's removed.
-  def warmup1(numbers: Array[Int]): Array[Int] = numbers.filter(_ != 0)
+  def warmup1(answers: Array[Int]): Array[Int] = answers.filter(_ != 0)
 
   // Given a sequence of answers, return the sequence sorted in descending order,
   // so that the first number is the largest and the last number is the smallest.
-  def warmup2(numbers: Array[Int]): Array[Int] = numbers.sorted.reverse
+  def warmup2(answers: Array[Int]): Array[Int] = answers.sorted.reverse
 
   // Given a number N and a sequence of answers,
   // return true if N is greater than the number of answers (i.e. the length of the sequence),
   // and false if N is less than or equal to the number of answers.
-  def warmup3(count: Int, numbers: Array[Int]): Boolean = count > numbers.length
+  def warmup3(N: Int, answers: Array[Int]): Boolean = N > answers.length
 }
