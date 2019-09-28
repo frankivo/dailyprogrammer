@@ -1,39 +1,44 @@
 import org.junit.jupiter.api.Assertions._
 import org.junit.jupiter.api.Test
 
-class TestWarmup1 {
+class TestWarmup2 {
   @Test
-  def testMultipleRemovals(): Unit = {
-    val input = Array(5, 3, 0, 2, 6, 2, 0, 7, 2, 5)
-    val expected = Array(5, 3, 2, 6, 2, 7, 2, 5)
-    assertArrayEquals(expected, main.warmup1(input))
+  def testGeneric(): Unit = {
+    val input = Array(5, 1, 3, 4, 2)
+    val expected = Array(5, 4, 3, 2, 1)
+
+    val result = main.warmup2(input)
+    assertArrayEquals(expected, result)
+    assertEquals(5, result.length)
   }
 
   @Test
-  def testTwoConsecutive(): Unit = {
-    val input = Array(4, 0, 0, 1, 3)
-    val expected = Array(4, 1, 3)
-    assertArrayEquals(expected, main.warmup1(input))
+  def testMultipleZeros(): Unit = {
+    val input = Array(0, 0, 0, 4, 0)
+    val expected = Array(4, 0, 0, 0, 0)
+
+    val result = main.warmup2(input)
+    assertArrayEquals(expected, result)
+    assertEquals(5, result.length)
   }
 
   @Test
-  def testNoRemovals(): Unit = {
-    val input = Array(1, 2, 3)
-    val expected = Array(1, 2, 3)
-    assertArrayEquals(expected, main.warmup1(input))
+  def testSingleElement(): Unit = {
+    val input = Array(1)
+    val expected = Array(1)
+
+    val result = main.warmup2(input)
+    assertArrayEquals(expected, result)
+    assertEquals(1, result.length)
   }
 
   @Test
-  def testEmptyOutput(): Unit = {
-    val input = Array(0,0,0)
-    val expected = Array[Int]()
-    assertArrayEquals(expected, main.warmup1(input))
-  }
-
-  @Test
-  def testEmptyInput(): Unit = {
+  def testEmptySet(): Unit = {
     val input = Array[Int]()
     val expected = Array[Int]()
-    assertArrayEquals(expected, main.warmup1(input))
+
+    val result = main.warmup2(input)
+    assertArrayEquals(expected, result)
+    assertEquals(0, result.length)
   }
 }
