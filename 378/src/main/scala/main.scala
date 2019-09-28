@@ -20,5 +20,24 @@ object main {
   def warmup4(N: Int, answers: Array[Int]): Array[Int] =
     answers.take(N).map(_ - 1) ++ answers.slice(N, answers.length)
 
-  def hh(answers: Array[Int]) : Boolean = false
+  /*
+    Remove all 0's from the sequence (i.e. warmup1).
+    If the sequence is now empty (no elements left), stop and return true.
+    Sort the sequence in descending order (i.e. warmup2).
+    Remove the first answer (which is also the largest answer, or tied for the largest) from the sequence and call it N. The sequence is now 1 shorter than it was after the previous step.
+    If N is greater than the length of this new sequence (i.e. warmup3), stop and return false.
+    Subtract 1 from each of the first N elements of the new sequence (i.e. warmup4).
+    Continue from step 1 using the sequence from the previous step.
+   */
+  def hh(answers: Array[Int]): Boolean = {
+    val s1 = warmup1(answers)
+    if (s1.length == 0) true
+    else {
+      val s2 = warmup2(s1)
+      val N = s2.head
+      val s3 = s2.slice(1, s2.length)
+      if (!warmup3(N, s3)) false
+      else hh(warmup4(N, s3))
+    }
+  }
 }
