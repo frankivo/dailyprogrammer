@@ -21,26 +21,24 @@ object main {
     answers.take(N).map(_ - 1) ++ answers.slice(N, answers.length)
 
   /*
-    Remove all 0's from the sequence (i.e. warmup1).
-    If the sequence is now empty (no elements left), stop and return true.
+    Remove all 0's from the sequence (i.e. warmup1). If the sequence is now empty (no elements left), stop and return true.
     Sort the sequence in descending order (i.e. warmup2).
-    Remove the first answer (which is also the largest answer, or tied for the largest) from the sequence and call it N. The sequence is now 1 shorter than it was after the previous step.
+    Remove the first answer (which is also the largest answer, or tied for the largest) from the sequence and call it N.
+      The sequence is now 1 shorter than it was after the previous step.
     If N is greater than the length of this new sequence (i.e. warmup3), stop and return false.
     Subtract 1 from each of the first N elements of the new sequence (i.e. warmup4).
     Continue from step 1 using the sequence from the previous step.
    */
-  def hh(answers: Array[Int]): Boolean = {
+  @scala.annotation.tailrec
+  def hh(answers: Array[Int]): Boolean =
     answers.filter(_ != 0).sorted.reverse match {
       case noZeroes if noZeroes.length.equals(0) => true
       case noZeroes => noZeroes match {
-        case sorted if sorted.head > sorted.slice(1, sorted.length).length =>
-          false
-        case sorted =>
-          val shorter = sorted.slice(1, sorted.length)
-          hh(
-            shorter.take(sorted.head).map(_ - 1) ++ shorter.slice(sorted.head, shorter.length)
-          )
+        case sorted if sorted.head > sorted.slice(1, sorted.length).length => false
+        case sorted => hh(
+          sorted.slice(1, sorted.length).take(sorted.head).map(_ - 1)
+            ++ sorted.slice(1, sorted.length).slice(sorted.head, sorted.length - 1)
+        )
       }
     }
-  }
 }
