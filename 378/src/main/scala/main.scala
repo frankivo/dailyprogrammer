@@ -30,14 +30,17 @@ object main {
     Continue from step 1 using the sequence from the previous step.
    */
   def hh(answers: Array[Int]): Boolean = {
-    val nonZeroes = warmup1(answers)
-    if (nonZeroes.length == 0) true
-    else {
-      val sorted = warmup2(nonZeroes)
-      val N = sorted.head
-      val minusOne = sorted.slice(1, sorted.length)
-      if (warmup3(N, minusOne)) false
-      else hh(warmup4(N, minusOne))
+    answers.filter(_ != 0).sorted.reverse match {
+      case noZeroes if noZeroes.length.equals(0) => true
+      case noZeroes => noZeroes match {
+        case sorted if sorted.head > sorted.slice(1, sorted.length).length =>
+          false
+        case sorted =>
+          val shorter = sorted.slice(1, sorted.length)
+          hh(
+            shorter.take(sorted.head).map(_ - 1) ++ shorter.slice(sorted.head, shorter.length)
+          )
+      }
     }
   }
 }
