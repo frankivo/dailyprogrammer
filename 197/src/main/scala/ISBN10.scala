@@ -13,9 +13,8 @@ object ISBN10 {
       .toUpperCase // Convert: x -> X
       .filter(x => x.isDigit || x.equals('X')) // Strip: anything that isn't a digit or an X
       .map(c => if (c.equals('X')) 10 else c.asDigit) // Convert: X -> 10
-      .reverse // Reverse: to make the next step easier
       .zipWithIndex // Give every digit an index
-      .map(n => (n._1, n._2 + 1)) // Index + 1 for multiplier
+      .map(n => (n._1, 10 - n._2)) // Calculate multiplier
       .map(n => n._1 * n._2) // Sum per digit
       .sum % 11 == 0 // Divide by 11 should result in 0
   }
@@ -27,9 +26,8 @@ object ISBN10 {
 
   def generateChecksum(code: IndexedSeq[Int]): String = {
     val sum = code
-      .reverse // Reverse: to make the next step easier
       .zipWithIndex // Give every digit an index
-      .map(x => (x._1, x._2 + 2)) // Index + 2 for multiplier
+      .map(x => (x._1, 10 - x._2)) // Index + 2 for multiplier
       .map(z => z._1 * z._2) // Sum per digit
       .sum
     (0 to 10)
