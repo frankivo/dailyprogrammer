@@ -17,8 +17,8 @@ object Yatzee {
     val url = "https://gist.githubusercontent.com/cosmologicon/beadf49c9fe50a5c2a07ab8d68093bd0/raw/" +
       "fb5af1a744faf79d64e2a3bb10973e642dc6f7b0/yahtzee-upper-1.txt"
     val file = Helper.getFile(url)
-    val ints = file.getLines.map(_.toLong).toArray
+    val dice = file.getLines.map(_.toLong).toArray
 
-    println(yahtzee_upper(ints))
+    println(yahtzee_upper(dice))
   }
 }
