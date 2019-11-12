@@ -5,7 +5,13 @@ package nl.github.frankivo
  */
 
 object Yatzee {
-  def yahtzee_upper(dice: Array[Long]): Long = dice.groupBy(a => a).view.mapValues(_.length).map(x => x._1 * x._2).max
+  def yahtzee_upper(dice: Array[Long]): Long = {
+    dice
+      .groupBy(a => a)
+      .view.mapValues(_.length)
+      .map(x => x._1 * x._2)
+      .max
+  }
 
   def main(args: Array[String]): Unit = {
     val url = "https://gist.githubusercontent.com/cosmologicon/beadf49c9fe50a5c2a07ab8d68093bd0/raw/" +
