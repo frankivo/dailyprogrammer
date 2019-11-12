@@ -5,5 +5,12 @@ package nl.github.frankivo
  */
 
 object Yatzee {
-  def yahtzee_upper(dice: Array[Int]) : Int = 0
+  def yahtzee_upper(dice: Array[Int]): Int = {
+    dice
+      .groupBy(a => a)
+      .view
+      .mapValues(_.length)
+      .map(x => x._1 * x._2)
+      .max
+  }
 }
