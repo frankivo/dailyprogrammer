@@ -1,16 +1,14 @@
 plugins {
-    id 'java'
+    id 'scala'
 }
 
 group 'nl.github.frankivo'
 version '1.0-SNAPSHOT'
-
-sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile 'org.scala-lang:scala-library:2.13.1'
 }
