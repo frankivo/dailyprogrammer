@@ -11,7 +11,7 @@ class YatzeeTest {
 
   @ParameterizedTest
   @MethodSource(Array("getDice"))
-  def myTest(expected: Int, dice: Array[Int]): Unit = assertEquals(expected, Yatzee.yahtzee_upper(dice))
+  def YatzeeTest(expected: Int, dice: Array[Int]): Unit = assertEquals(expected, Yatzee.yahtzee_upper(dice))
 
   private def getDice: Array[Arguments] = Array(
     Arguments.of(10, Array(2, 3, 5, 5, 6)),
