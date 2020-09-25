@@ -1,4 +1,4 @@
-name := "perl70"
+name := "perl79"
 
 version := "0.1"
 
