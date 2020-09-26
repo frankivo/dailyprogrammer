@@ -5,7 +5,7 @@ package com.github.frankivo
 object TrappedRainWater {
   def getAmount(water: Array[Int]): Int = {
     printHistogram(water)
-    0
+    calculateWater(water)
   }
 
   def printHistogram(water: Array[Int]): Unit = {
@@ -23,5 +23,17 @@ object TrappedRainWater {
 
     println("- " * (water.length + 1))
     println(" " * 2 + water.mkString(" "))
+  }
+
+  def calculateWater(water: Array[Int]) : Int = {
+    var currentHeight = 0
+    var content = 0
+
+    water.foreach(w => {
+      if (w < currentHeight) content += currentHeight - w
+      if (w > currentHeight) currentHeight = w
+    })
+
+    content
   }
 }
