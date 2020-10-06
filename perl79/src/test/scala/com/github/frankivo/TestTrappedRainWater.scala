@@ -15,5 +15,11 @@ object TestTrappedRainWater extends TestSuite {
       val expected = 6
       assert(expected == result)
     }
+
+    test("Breakstuff") {
+      val result = TrappedRainWater.getAmount(Array(3, 1, 5, 1, 2, 3, 2, 2, 6))
+      val expected = 4
+      assert(expected == result)
+    }
   }
 }
