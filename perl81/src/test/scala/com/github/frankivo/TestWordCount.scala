@@ -15,15 +15,15 @@ object TestWordCount extends TestSuite {
       val text = getText
       val result = WordCount.countWords(text)
 
-      result.length ==> 5 // Test number of rows
+      result.size ==> 5 // Test number of rows
 
       result.foreach(r => { // Test word-count per number
         r._1 match {
-          case 1 => r._2.length ==> 84
-          case 2 => r._2.length ==> 9
-          case 3 => r._2.length ==> 6
-          case 4 => r._2.length ==> 1
-          case 9 => r._2.length ==> 2
+          case 1 => r._2.size ==> 83
+          case 2 => r._2.size ==> 9
+          case 3 => r._2.size ==> 6
+          case 4 => r._2.size ==> 1
+          case 9 => r._2.size ==> 2
           case _ => throw new Exception("Unexpected result")
         }
       })
