@@ -1,11 +1,11 @@
 package com.github.frankivo
 
-import utest.{TestSuite, Tests, test}
+import utest.{ArrowAssert, TestSuite, Tests, test}
 
 object TestWordCount extends TestSuite {
   val tests: Tests = Tests {
     test("Wordcount test") {
-      val text  =
+      val text =
         """
           |West Side Story
           |
@@ -19,7 +19,20 @@ object TestWordCount extends TestSuite {
           |It goes terribly wrong, and before the lovers know what's happened, tragedy strikes and doesn't stop until the climactic and heartbreaking ending.
           |""".stripMargin
 
-        val result = WordCount.countWords(text)
+      val result = WordCount.countWords(text)
+
+      result.length ==> 5 // Test number of rows
+
+      result.foreach(r => { // Test word-count per number
+        r._1 match {
+          case 1 => r._2.length ==> 84
+          case 2 => r._2.length ==> 9
+          case 3 => r._2.length ==> 6
+          case 4 => r._2.length ==> 1
+          case 9 => r._2.length ==> 2
+          case _ => throw new Exception("Unexpected result")
+        }
+      })
     }
   }
 }
