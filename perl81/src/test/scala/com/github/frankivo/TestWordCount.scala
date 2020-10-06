@@ -17,16 +17,13 @@ object TestWordCount extends TestSuite {
 
       result.size ==> 5 // Test number of rows
 
-      result.foreach(r => { // Test word-count per number
-        r._1 match {
-          case 1 => r._2.size ==> 83
-          case 2 => r._2.size ==> 9
-          case 3 => r._2.size ==> 6
-          case 4 => r._2.size ==> 1
-          case 9 => r._2.size ==> 2
-          case _ => throw new Exception("Unexpected result")
-        }
-      })
+      result(1).size ==> 83
+      result(2).size ==> 9
+      result(3).size ==> 6
+      result(4).size ==> 1
+      result(9).size ==> 2
+
+      result(4).head ==> "to"
     }
   }
 }
