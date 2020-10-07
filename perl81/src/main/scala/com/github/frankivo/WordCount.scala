@@ -1,5 +1,7 @@
 package com.github.frankivo
 
+// https://perlweeklychallenge.org/blog/perl-weekly-challenge-081/#TASK1
+
 object WordCount {
 
   def countWords(text: String): Map[Int, Iterable[String]] = {

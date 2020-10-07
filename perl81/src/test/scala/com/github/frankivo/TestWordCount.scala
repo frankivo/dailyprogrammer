@@ -3,16 +3,26 @@ package com.github.frankivo
 import utest.{ArrowAssert, TestSuite, Tests, test}
 
 object TestWordCount extends TestSuite {
-  def getText: String = {
-    val s = scala.io.Source.fromFile("src/test/resources/WestSideStory.txt")
+  def getText(filename: String): String = {
+    val s = scala.io.Source.fromFile("src/test/resources/" + filename)
     val lines = s.getLines.mkString(" ")
     s.close
     lines
   }
 
   val tests: Tests = Tests {
-    test("Wordcount test") {
-      val text = getText
+    test("Quick Brown Fox") {
+      val text = getText("QuickBrownFox.txt")
+      val result = WordCount.countWords(text)
+
+      println(result)
+
+      result.size ==> 1 // Test number of rows
+      assert(result.head._2.toSeq.contains("fox"))
+    }
+
+    test("West Side Story") {
+      val text = getText("WestSideStory.txt")
       val result = WordCount.countWords(text)
 
       result.size ==> 5 // Test number of rows
